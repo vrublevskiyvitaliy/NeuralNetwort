@@ -1,8 +1,6 @@
 
 tests = list()
 
-#tests.append([1, -1, 1, 1, 1, 1, -1, -1, 1])
-
 alphabet = dict()
 
 alphabet[u'В'] = [
@@ -84,10 +82,25 @@ alphabet[u'К'] = [
     1, 1, -1, 1, -1,
     1, 1, -1, -1, 1,
 ]
+alphabet[u'Б'] = [
+    1, 1, 1, 1, 1,
+    1, 1, -1, -1, -1,
+    1, 1, 1, 1, 1,
+    1, 1, -1, 1, 1,
+    1, 1, -1, 1, 1,
+    1, 1, -1, 1, 1,
+    1, 1, 1, 1, 1,
+]
+alphabet[u'Ь'] = [
+    1, 1, -1, -1, -1,
+    1, 1, -1, -1, -1,
+    1, 1, 1, 1, 1,
+    1, 1, -1, 1, 1,
+    1, 1, -1, 1, 1,
+    1, 1, -1, 1, 1,
+    1, 1, 1, 1, 1,
+]
 '''
-
-
-
 # Add B
 tests.append(
     [
@@ -182,15 +195,30 @@ tests.append(
     ]
 )
 '''
+
+'''
+bad tests
+
+
+tests.append(alphabet[u'В'])
+tests.append(alphabet[u'Р'])
+tests.append(alphabet[u'Б'])
+tests.append(alphabet[u'Ь'])
+'''
+
 #'''
 tests.append(alphabet[u'В'])
 tests.append(alphabet[u'Р'])
-#tests.append(alphabet[u'Й'])
+#tests.append(alphabet[u'Б'])
+#tests.append(alphabet[u'Ь'])
 tests.append(alphabet[u'І'])
+tests.append(alphabet[u'К'])
+
+#tests.append(alphabet[u'И'])
+#tests.append(alphabet[u'Й'])
 ##tests.append(alphabet[u'Е'])
-tests.append(alphabet[u'И'])
 #tests.append(alphabet[u'Л'])
-#tests.append(alphabet[u'К'])
+
 #'''
 '''
 Kate tests

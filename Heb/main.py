@@ -49,8 +49,9 @@ if __name__ == '__main__':
         flag = True
         for i in range(n):
             reaction = network.get_reaction(learning_data[i][0])
-            print(str(i) + ' ', end='')
-            print(network.get_reaction_row(learning_data[i][0]))
+            #print(str(i) + ' ', end='')
+            #print(network.get_reaction_row(learning_data[i][0]))
+            #print(network.get_reaction(learning_data[i][0]))
             for j in range(n):
                 if reaction[j] != learning_data[i][1][j]:
                     flag = False
@@ -67,4 +68,11 @@ if __name__ == '__main__':
             break
 
     r1 = network.get_reaction(learning_data[0][0])
+    r2 = network.get_reaction(learning_data[1][0])
+    r3 = network.get_reaction(learning_data[2][0])
+    r4 = network.get_reaction(learning_data[3][0])
+
     print(r1)
+    print(r2)
+    print(r3)
+    print(r4)

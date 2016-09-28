@@ -32,12 +32,14 @@ class HebNeuronNetworkBipolar:
     def get_reaction_row(self, data):
         answer = []
         # add 1 at the begging of test case
-        # data.insert(0, 1)
+        d = list(data)
+        d.insert(0, 1)
         for i in range(self.n_neurons):
             # add w0
-            s = self.network_connections[0][i]
-            for j in range(1, self.n_receptors):
-                s += self.network_connections[j][i] * data[j]
+            s = 0
+            #s = self.network_connections[0][i]
+            for j in range(self.n_receptors + 1):
+                s += self.network_connections[j][i] * d[j]
             answer.append(s)
         return answer
 
