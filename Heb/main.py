@@ -15,18 +15,6 @@ def create_data_for_learning_bipolar():
     return data
 
 
-def create_data_for_learning_binary():
-    data = list()
-
-    for j in range(len(tests)):
-        c_l = [0] * len(tests)
-        c_l[j] = 1
-        data.append([
-            tests[j],
-            c_l
-        ])
-    return data
-
 if __name__ == '__main__':
 
     n = len(tests)
@@ -49,9 +37,6 @@ if __name__ == '__main__':
         flag = True
         for i in range(n):
             reaction = network.get_reaction(learning_data[i][0])
-            #print(str(i) + ' ', end='')
-            #print(network.get_reaction_row(learning_data[i][0]))
-            #print(network.get_reaction(learning_data[i][0]))
             for j in range(n):
                 if reaction[j] != learning_data[i][1][j]:
                     flag = False
