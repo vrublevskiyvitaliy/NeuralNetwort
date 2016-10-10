@@ -11,7 +11,7 @@ class RozenblatPerceptronOneR:
         self.init_sa_matrix()
         self.init_ar_matrix()
 
-        self.sigma_a = 0
+        self.sigma_a = [0]*self.a_number
 
     def init_sa_matrix(self):
         self.sa_matrix = []
@@ -19,7 +19,7 @@ class RozenblatPerceptronOneR:
         for i in range(self.s_number):
             new = []
             for j in range(self.a_number):
-                new.append(random())
+                new.append(random() * 2 - 1)
             self.sa_matrix.append(new)
 
     def init_ar_matrix(self):
@@ -31,8 +31,8 @@ class RozenblatPerceptronOneR:
                 new.append(0)
             self.ar_matrix.append(new)
 
-    def set_sigma_a(self, a):
-        self.sigma_a = a
+    def set_sigma_a(self, a_index, a):
+        self.sigma_a[a_index] = a
 
     def calculate_row_a(self, test):
         res = []
@@ -48,7 +48,7 @@ class RozenblatPerceptronOneR:
         res = []
         for a_index in range(self.a_number):
             c = 0
-            if row_res[a_index] >= self.sigma_a:
+            if row_res[a_index] >= self.sigma_a[a_index]:
                 c = 1
             res.append(c)
 
