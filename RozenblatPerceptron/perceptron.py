@@ -39,7 +39,7 @@ class RozenblatPerceptronOneR:
         for a_index in range(self.a_number):
             c = 0
             for s_index in range(self.s_number):
-                c += self.sa_matrix[s_index][a_index]
+                c += self.sa_matrix[s_index][a_index] * test[s_index]
             res.append(c)
         return res
 
