@@ -23,9 +23,9 @@ class RozenblatPerceptronOneR:
     def init_ar_matrix(self):
         self.ar_matrix = []
 
-        for i in range(self.s_number):
+        for i in range(self.a_number):
             new = []
-            for j in range(self.a_number):
+            for j in range(self.r_number):
                 new.append(0)
             self.ar_matrix.append(new)
 
