@@ -7,6 +7,9 @@ if __name__ == '__main__':
     t1 = alphabet[u'В']
     t2 = alphabet[u'І']
 
+    r_t1 = 1
+    r_t2 = -1
+
     perceptron = RozenblatPerceptronOneR(len(t1), 5)
 
     # make random
@@ -72,6 +75,27 @@ if __name__ == '__main__':
 
     a_res_1 = perceptron.calculate_a(t1)
     a_res_2 = perceptron.calculate_a(t2)
+
+    r_1 = perceptron.calculate_row_r(t1)
+    r_2 = perceptron.calculate_row_r(t2)
+
+    sigma_r = (r_1 + r_2) / 2
+    perceptron.set_sigma_r(sigma_r)
+    perceptron.set_delta(0.1)
+
+    while True:
+        r_1 = perceptron.calculate_r(t1)
+        r_2 = perceptron.calculate_r(t2)
+
+        if r_1 == r_t1 and r_2 == r_t2:
+            break
+
+        # teach first image
+        if r_1 != r_t1:
+            perceptron.teach_perceptron_alpha(t1, r_t1)
+        # teach second image
+        if r_2 != r_t2:
+            perceptron.teach_perceptron_alpha(t2, r_t2)
 
 
     t = 0

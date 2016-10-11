@@ -33,7 +33,7 @@ class RozenblatPerceptronOneR:
         for i in range(self.a_number):
             new = []
             for j in range(self.r_number):
-                new.append(0)
+                new.append(random())
             self.ar_matrix.append(new)
 
     def set_sigma_a(self, a_index, a):
@@ -69,9 +69,7 @@ class RozenblatPerceptronOneR:
         c = 0
         a_row = self.calculate_a(test)
         for a_index in range(self.a_number):
-            c = 0
-            for r_index in range(self.r_number):
-                c += self.ar_matrix[a_index][r_index] * a_row[a_index]
+            c += self.ar_matrix[a_index][0] * a_row[a_index]
         return c
 
     def calculate_r(self, test):
@@ -80,6 +78,25 @@ class RozenblatPerceptronOneR:
             return 1
         else:
             return -1
+
+    def teach_perceptron_alpha(self, test, result):
+        r = self.calculate_r(test)
+
+        if r == result:
+            return
+        else:
+            delta = result * self.sigma_r
+
+        a = self.calculate_a(test)
+        for a_index in range(len(a)):
+            if a[a_index] == 1:
+                s = self.ar_matrix[a_index][0] + delta
+                if s < 0:
+                    s = 0
+                elif s > 1:
+                    s = 1
+                self.ar_matrix[a_index][0] = s
+
 
 
 
