@@ -1,5 +1,12 @@
 from random import random
 
+def sign(a):
+    if a > 0:
+        return 1
+    elif a < 0:
+        return  -1
+    else:
+        return 0
 
 class RozenblatPerceptronOneR:
     def __init__(self, s_number, a_number):
@@ -100,18 +107,70 @@ class RozenblatPerceptronOneR:
     def clone(self):
         p = RozenblatPerceptronOneR(self.s_number, self.a_number)
 
-        for s_index in range(len(p.s_number)):
-            for a_index in range(len(p.a_number)):
+        for s_index in range(p.s_number):
+            for a_index in range(p.a_number):
                 p.sa_matrix[s_index][a_index] = \
                     self.sa_matrix[s_index][a_index]
 
         p.set_delta(self.delta)
         p.set_sigma_r(self.sigma_r)
 
-        for a_index in range(len(p.a_number)):
+        for a_index in range(p.a_number):
             p.set_sigma_a(a_index, p.sigma_a[a_index])
 
         return p
+
+    def teach_perceptron_gama(self, test, result):
+        r = self.calculate_r(test)
+
+        if r == result:
+            return
+        else:
+            delta = result * self.delta
+
+        a = self.calculate_a(test)
+        n_active = 0
+        for a_index in range(len(a)):
+            if a[a_index] == 1:
+                n_active += 1
+
+        n_active_edge = 0
+        n_active_on_edge = 0
+        edge_sum = 0
+        for a_index in range(len(a)):
+            cur = self.ar_matrix[a_index][0]
+            if cur == 1 or cur == 0:
+                n_active_on_edge += 1
+                continue
+            if a[a_index] == 1:
+                d = delta - (n_active * delta)/self.a_number
+                s = cur + d
+                if s < 0:
+                    n_active_edge += 1
+                    edge_sum += abs(0 - cur)
+                elif s > 1:
+                    n_active_edge += 1
+                    edge_sum += abs(1 - cur)
+            else:
+                d = - (n_active * delta)/self.a_number
+                s = cur + d
+                if s < 0:
+                    n_active_edge += 1
+                    edge_sum += abs(0 - cur)
+                elif s > 1:
+                    n_active_edge += 1
+                    edge_sum += abs(1 - cur)
+
+        all_s = (n_active - n_active_edge - n_active_on_edge)*delta + sign(delta)*edge_sum
+
+        for a_index in range(len(a)):
+            cur = self.ar_matrix[a_index][0]
+            if a[a_index] == 1:
+                d = delta - all_s / self.a_number
+            else:
+                d = - all_s / self.a_number
+
+            self.ar_matrix[a_index][0] += d
 
 
 

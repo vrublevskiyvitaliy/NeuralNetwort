@@ -97,5 +97,23 @@ if __name__ == '__main__':
         if r_2 != r_t2:
             perceptron.teach_perceptron_alpha(t2, r_t2)
 
+    p_gama_learning = perceptron.clone()
+
+
+    while True:
+        r_1 = p_gama_learning.calculate_r(t1)
+        r_2 = p_gama_learning.calculate_r(t2)
+
+        if r_1 == r_t1 and r_2 == r_t2:
+            break
+
+        # teach first image
+        if r_1 != r_t1:
+            p_gama_learning.teach_perceptron_gama(t1, r_t1)
+        # teach second image
+        if r_2 != r_t2:
+            p_gama_learning.teach_perceptron_gama(t2, r_t2)
+
+
 
     t = 0
