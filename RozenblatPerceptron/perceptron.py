@@ -65,5 +65,22 @@ class RozenblatPerceptronOneR:
     def set_sigma_r(self, sigma):
         self.sigma_r = sigma
 
+    def calculate_row_r(self, test):
+        c = 0
+        a_row = self.calculate_a(test)
+        for a_index in range(self.a_number):
+            c = 0
+            for r_index in range(self.r_number):
+                c += self.ar_matrix[a_index][r_index] * a_row[a_index]
+        return c
+
+    def calculate_r(self, test):
+        row_r = self.calculate_row_r(test)
+        if row_r > self.sigma_r:
+            return 1
+        else:
+            return -1
+
+
 
 
