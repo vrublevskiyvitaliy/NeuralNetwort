@@ -97,7 +97,21 @@ class RozenblatPerceptronOneR:
                     s = 1
                 self.ar_matrix[a_index][0] = s
 
+    def clone(self):
+        p = RozenblatPerceptronOneR(self.s_number, self.a_number)
 
+        for s_index in range(len(p.s_number)):
+            for a_index in range(len(p.a_number)):
+                p.sa_matrix[s_index][a_index] = \
+                    self.sa_matrix[s_index][a_index]
+
+        p.set_delta(self.delta)
+        p.set_sigma_r(self.sigma_r)
+
+        for a_index in range(len(p.a_number)):
+            p.set_sigma_a(a_index, p.sigma_a[a_index])
+
+        return p
 
 
 
