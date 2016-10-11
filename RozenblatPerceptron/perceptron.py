@@ -8,8 +8,13 @@ class RozenblatPerceptronOneR:
         self.a_number = a_number
         self.r_number = 1
 
+        self.sa_matrix = []
+
         self.init_sa_matrix()
         self.init_ar_matrix()
+
+        self.delta = 0
+        self.sigma_r = 0
 
         self.sigma_a = [0]*self.a_number
 
@@ -53,4 +58,12 @@ class RozenblatPerceptronOneR:
             res.append(c)
 
         return res
+
+    def set_delta(self, d):
+        self.delta = d
+
+    def set_sigma_r(self, sigma):
+        self.sigma_r = sigma
+
+
 
